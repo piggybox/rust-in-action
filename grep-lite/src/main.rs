@@ -1,9 +1,15 @@
-use num::complex::Complex;
-
 fn main() {
-    let a = Complex { re: 2.1, im: -1.2 };
-    let b = Complex::new(11.1, 22.2);
-    let result = a + b;
+    // let needle = 42;
+    let haystack = [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862];
 
-    println!("{} + {}i", result.re, result.im)
+    for item in &haystack {
+        let result = match item {
+            42 | 132 => "hit!",
+            _ => "miss",
+        };
+
+        if result == "hit!" {
+            println!("{}: {}", item, result);
+        }
+    }
 }
