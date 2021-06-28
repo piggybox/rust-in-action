@@ -1,15 +1,19 @@
+use regex::Regex;
+
 fn main() {
-    // let needle = 42;
-    let haystack = [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862];
+    let re = Regex::new("picture").unwrap();
 
-    for item in &haystack {
-        let result = match item {
-            42 | 132 => "hit!",
-            _ => "miss",
-        };
+    let quote = "\
+  Every face, every shop, bedroom window, public-house, and
+  dark square is a picture feverishly turned--in search of what?
+  It is the same with books.
+  What do we seek through millions of pages?";
 
-        if result == "hit!" {
-            println!("{}: {}", item, result);
+    for line in quote.lines() {
+        let contains_substring = re.find(line);
+        match contains_substring {
+            Some(_) => println!("{}", line),
+            None => (),
         }
     }
 }
